@@ -29,6 +29,11 @@ RSpec.describe 'routes for articles' do
     )
   end
 
-  skip 'routes POST /articles to the articles#create action' do
+  it 'routes POST /articles to the articles#create action' do
+    expect(post('/articles/1')).to route_to(
+      controller: 'articles',
+      action: 'create',
+      id: '1'
+    )
   end
 end
