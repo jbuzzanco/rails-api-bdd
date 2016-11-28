@@ -21,10 +21,19 @@ RSpec.describe ArticlesController do
   end
 
   describe 'GET index' do
+    # before each of tests making a get request for the index method
+    before(:each) { get :index }
     skip 'is succesful' do
+      expect(response.status).to eq(200) # be success
     end
 
-    skip 'renders a JSON response' do
+    it 'renders a JSON response' do
+      # takes the JSON in the response and makes into a Ruby Object
+      # that we can manipulate. Assigns that object to article_collection.
+      articles_collection = JSON.parse(response.body)
+
+      expect(articles_collection).not_to be_nil
+      expect(articles_collection.first['title']).to eq(article['title'])
     end
   end
 
