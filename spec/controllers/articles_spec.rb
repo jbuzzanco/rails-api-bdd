@@ -70,10 +70,13 @@ RSpec.describe ArticlesController do
       patch :update, id: article.id, article: article_diff, format: :json
     end
 
-    skip 'is successful' do
+    it 'is successful' do
+      patch :update, id: article.id, article: article_diff, format: :json
     end
 
-    skip 'renders a JSON response' do
+    it 'renders a JSON response' do
+      expect(response.status).to eq(204)
+      expect(response.body).to be_empty
     end
   end
 
