@@ -69,7 +69,11 @@ RSpec.describe 'Articles API' do
   end
 
   describe 'DELETE /articles/:id' do
-    skip 'deletes an article' do
+    it 'deletes an article' do
+      delete "/articles/#{article.id}"
+
+      expect(response).to be_success
+      expect(response.body).to be_empty
     end
   end
 
@@ -78,7 +82,12 @@ RSpec.describe 'Articles API' do
       { title: 'Two Stupid Tricks' }
     end
 
-    skip 'updates an article' do
+    it 'updates an article' do
+      patch "/articles/#{article.id}"
+
+      expect(response).to be_success
+      expect(response.body).to be_empty
+      expect(article['title']).to eq(article_diff['title'])
     end
   end
 
